@@ -1,0 +1,493 @@
+Salida de consola
+Started by user admin
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/JobDevOpsTestJenkins
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout Code)
+[Pipeline] git
+The recommended git tool is: NONE
+using credential az_credentials
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/JobDevOpsTestJenkins/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://DevOpsTestOrgJMD@dev.azure.com/DevOpsTestOrgJMD/ProjectDevOpsTest/_git/ProjectDevOpsTest # timeout=10
+Fetching upstream changes from https://DevOpsTestOrgJMD@dev.azure.com/DevOpsTestOrgJMD/ProjectDevOpsTest/_git/ProjectDevOpsTest
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_ASKPASS to set credentials Credential for AzureDevOps Repository
+ > git fetch --tags --force --progress -- https://DevOpsTestOrgJMD@dev.azure.com/DevOpsTestOrgJMD/ProjectDevOpsTest/_git/ProjectDevOpsTest +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision e603d848763f2a482918235b1cd85530d1e8ade8 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f e603d848763f2a482918235b1cd85530d1e8ade8 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master e603d848763f2a482918235b1cd85530d1e8ade8 # timeout=10
+Commit message: "[FIX] Pipeline"
+ > git rev-list --no-walk 4997b705a2a44455cff95c3160b0613f22c64bd5 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (SonarQube Analizer)
+[Pipeline] tool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withSonarQubeEnv
+Injecting SonarQube environment variables using the configuration: SonarQubeDocker
+[Pipeline] {
+[Pipeline] sh
++ /var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarscanner/bin/sonar-scanner -X -Dsonar.projectKey=sonarq-project-devops -Dsonar.sources=src -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=****** -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=ts -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info -Dsonar.exclusions=node_modules/*,**/*.spec.ts
+18:30:41.930 INFO: Scanner configuration file: /var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarscanner/conf/sonar-scanner.properties
+18:30:41.932 INFO: Project root configuration file: /var/jenkins_home/workspace/JobDevOpsTestJenkins/sonar-project.properties
+18:30:41.956 INFO: SonarScanner 4.6.2.2472
+18:30:41.956 INFO: Java 11.0.12 Eclipse Foundation (64-bit)
+18:30:41.957 INFO: Linux 4.19.128-microsoft-standard amd64
+18:30:42.065 DEBUG: keyStore is : 
+18:30:42.065 DEBUG: keyStore type is : pkcs12
+18:30:42.065 DEBUG: keyStore provider is : 
+18:30:42.065 DEBUG: init keystore
+18:30:42.066 DEBUG: init keymanager of type SunX509
+18:30:42.174 DEBUG: Create: /var/jenkins_home/.sonar/cache
+18:30:42.174 INFO: User cache: /var/jenkins_home/.sonar/cache
+18:30:42.174 DEBUG: Create: /var/jenkins_home/.sonar/cache/_tmp
+18:30:42.176 DEBUG: Extract sonar-scanner-api-batch in temp...
+18:30:42.179 DEBUG: Get bootstrap index...
+18:30:42.179 DEBUG: Download: http://sonarqube:9000/batch/index
+18:30:42.221 DEBUG: Get bootstrap completed
+18:30:42.225 DEBUG: Create isolated classloader...
+18:30:42.231 DEBUG: Start temp cleaning...
+18:30:42.234 DEBUG: Temp cleaning done
+18:30:42.234 INFO: Scanner configuration file: /var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarscanner/conf/sonar-scanner.properties
+18:30:42.234 INFO: Project root configuration file: /var/jenkins_home/workspace/JobDevOpsTestJenkins/sonar-project.properties
+18:30:42.235 DEBUG: Execution getVersion
+18:30:42.246 INFO: Analyzing on SonarQube server 9.1.0
+18:30:42.247 INFO: Default locale: "en", source code encoding: "UTF-8"
+18:30:42.247 DEBUG: Work directory: /var/jenkins_home/workspace/JobDevOpsTestJenkins/.scannerwork
+18:30:42.248 DEBUG: Execution execute
+18:30:42.421 DEBUG: Community 9.1.0.47736
+18:30:42.545 INFO: Load global settings
+18:30:42.583 DEBUG: GET 200 http://sonarqube:9000/api/settings/values.protobuf | time=37ms
+18:30:42.602 INFO: Load global settings (done) | time=57ms
+18:30:42.603 INFO: Server id: BF41A1F2-AXx8YA_-XRp5_-g2gi-I
+18:30:42.611 INFO: User cache: /var/jenkins_home/.sonar/cache
+18:30:42.613 INFO: Load/download plugins
+18:30:42.613 INFO: Load plugins index
+18:30:42.621 DEBUG: GET 200 http://sonarqube:9000/api/plugins/installed | time=7ms
+18:30:42.647 INFO: Load plugins index (done) | time=34ms
+18:30:42.704 INFO: Load/download plugins (done) | time=91ms
+18:30:42.759 DEBUG: Plugins:
+18:30:42.759 DEBUG:   * Python Code Quality and Security 3.6.0.8488 (python)
+18:30:42.759 DEBUG:   * CSS Code Quality and Security 1.4.2.2002 (cssfamily)
+18:30:42.760 DEBUG:   * Go Code Quality and Security 1.8.3.2219 (go)
+18:30:42.760 DEBUG:   * JaCoCo 1.1.1.1157 (jacoco)
+18:30:42.760 DEBUG:   * Kotlin Code Quality and Security 2.2.0.499 (kotlin)
+18:30:42.760 DEBUG:   * JavaScript/TypeScript Code Quality and Security 8.4.0.16431 (javascript)
+18:30:42.760 DEBUG:   * Ruby Code Quality and Security 1.8.3.2219 (ruby)
+18:30:42.760 DEBUG:   * Scala Code Quality and Security 1.8.3.2219 (sonarscala)
+18:30:42.760 DEBUG:   * C# Code Quality and Security 8.29.0.36737 (csharp)
+18:30:42.760 DEBUG:   * Java Code Quality and Security 7.3.0.27589 (java)
+18:30:42.760 DEBUG:   * HTML Code Quality and Security 3.4.0.2754 (web)
+18:30:42.760 DEBUG:   * Flex Code Quality and Security 2.6.2.2641 (flex)
+18:30:42.760 DEBUG:   * XML Code Quality and Security 2.3.0.3155 (xml)
+18:30:42.760 DEBUG:   * PHP Code Quality and Security 3.20.0.8080 (php)
+18:30:42.760 DEBUG:   * VB.NET Code Quality and Security 8.29.0.36737 (vbnet)
+18:30:43.081 INFO: Process project properties
+18:30:43.086 INFO: Process project properties (done) | time=5ms
+18:30:43.087 INFO: Execute project builders
+18:30:43.087 DEBUG: Execute project builder: org.sonar.plugins.csharp.CSharpGlobalProtobufFileProcessor
+18:30:43.088 DEBUG: Execute project builder: org.sonar.plugins.vbnet.VbNetGlobalProtobufFileProcessor
+18:30:43.088 INFO: Execute project builders (done) | time=1ms
+18:30:43.090 INFO: Project key: sonarq-project-devops
+18:30:43.090 INFO: Base dir: /var/jenkins_home/workspace/JobDevOpsTestJenkins
+18:30:43.090 INFO: Working dir: /var/jenkins_home/workspace/JobDevOpsTestJenkins/.scannerwork
+18:30:43.090 DEBUG: Project global encoding: UTF-8, default locale: en
+18:30:43.092 DEBUG: Creating module hierarchy
+18:30:43.092 DEBUG:   Init module 'sonarq-project-devops'
+18:30:43.092 DEBUG:     Base dir: /var/jenkins_home/workspace/JobDevOpsTestJenkins
+18:30:43.092 DEBUG:     Working dir: /var/jenkins_home/workspace/JobDevOpsTestJenkins/.scannerwork
+18:30:43.092 DEBUG:     Module global encoding: UTF-8, default locale: en
+18:30:43.392 INFO: Load project settings for component key: 'sonarq-project-devops'
+18:30:43.404 DEBUG: GET 200 http://sonarqube:9000/api/settings/values.protobuf?component=sonarq-project-devops | time=12ms
+18:30:43.405 INFO: Load project settings for component key: 'sonarq-project-devops' (done) | time=13ms
+18:30:43.427 DEBUG: Available languages:
+18:30:43.427 DEBUG:   * Python => "py"
+18:30:43.427 DEBUG:   * CSS => "css"
+18:30:43.427 DEBUG:   * Go => "go"
+18:30:43.427 DEBUG:   * Kotlin => "kotlin"
+18:30:43.428 DEBUG:   * JavaScript => "js"
+18:30:43.428 DEBUG:   * TypeScript => "ts"
+18:30:43.428 DEBUG:   * Ruby => "ruby"
+18:30:43.428 DEBUG:   * Scala => "scala"
+18:30:43.428 DEBUG:   * C# => "cs"
+18:30:43.428 DEBUG:   * Java => "java"
+18:30:43.428 DEBUG:   * HTML => "web"
+18:30:43.428 DEBUG:   * JSP => "jsp"
+18:30:43.428 DEBUG:   * Flex => "flex"
+18:30:43.428 DEBUG:   * XML => "xml"
+18:30:43.428 DEBUG:   * PHP => "php"
+18:30:43.428 DEBUG:   * VB.NET => "vbnet"
+18:30:43.437 INFO: Auto-configuring with CI 'Jenkins'
+18:30:43.438 INFO: Load quality profiles
+18:30:43.474 DEBUG: GET 200 http://sonarqube:9000/api/qualityprofiles/search.protobuf?project=sonarq-project-devops | time=36ms
+18:30:43.488 INFO: Load quality profiles (done) | time=50ms
+18:30:43.491 INFO: Auto-configuring with CI 'Jenkins'
+18:30:43.494 INFO: Load active rules
+18:30:43.550 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YGu5XRp5_-g2gmti&ps=500&p=1 | time=55ms
+18:30:43.636 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YGwqXRp5_-g2gmu_&ps=500&p=1 | time=34ms
+18:30:43.659 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YGyBXRp5_-g2gmvf&ps=500&p=1 | time=17ms
+18:30:43.695 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YGyVXRp5_-g2gmwa&ps=500&p=1 | time=35ms
+18:30:43.773 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YGz2XRp5_-g2gmy5&ps=500&p=1 | time=75ms
+18:30:43.906 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YG1vXRp5_-g2gm5t&ps=500&p=1 | time=125ms
+18:30:44.026 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YG4lXRp5_-g2gnA-&ps=500&p=1 | time=101ms
+18:30:44.080 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YG6eXRp5_-g2gnEK&ps=500&p=1 | time=44ms
+18:30:44.251 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YG8yXRp5_-g2gnMv&ps=500&p=1 | time=168ms
+18:30:44.618 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YHA9XRp5_-g2gnfh&ps=500&p=1 | time=357ms
+18:30:44.676 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YHENXRp5_-g2gnnq&ps=500&p=1 | time=33ms
+18:30:44.718 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YHFlXRp5_-g2gnpu&ps=500&p=1 | time=41ms
+18:30:44.744 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YHGvXRp5_-g2gnq2&ps=500&p=1 | time=24ms
+18:30:44.865 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YHIUXRp5_-g2gnv6&ps=500&p=1 | time=120ms
+18:30:44.966 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YHM1XRp5_-g2gn4r&ps=500&p=1 | time=97ms
+18:30:45.083 DEBUG: GET 200 http://sonarqube:9000/api/rules/search.protobuf?f=repo,name,severity,lang,internalKey,templateKey,params,actives,createdAt,updatedAt,deprecatedKeys&activation=true&qprofile=AXx8YHPLXRp5_-g2gn_9&ps=500&p=1 | time=114ms
+18:30:45.095 INFO: Load active rules (done) | time=1601ms
+18:30:45.138 DEBUG: Declared extensions of language Python were converted to sonar.lang.patterns.py : **/*.py
+18:30:45.139 DEBUG: Declared extensions of language CSS were converted to sonar.lang.patterns.css : **/*.css,**/*.less,**/*.scss
+18:30:45.140 DEBUG: Declared extensions of language Go were converted to sonar.lang.patterns.go : **/*.go
+18:30:45.140 DEBUG: Declared extensions of language Kotlin were converted to sonar.lang.patterns.kotlin : **/*.kt
+18:30:45.140 DEBUG: Declared extensions of language JavaScript were converted to sonar.lang.patterns.js : **/*.js,**/*.jsx,**/*.mjs,**/*.vue
+18:30:45.141 DEBUG: Declared extensions of language TypeScript were converted to sonar.lang.patterns.ts : **/*.ts,**/*.tsx
+18:30:45.141 DEBUG: Declared extensions of language Ruby were converted to sonar.lang.patterns.ruby : **/*.rb
+18:30:45.141 DEBUG: Declared extensions of language Scala were converted to sonar.lang.patterns.scala : **/*.scala
+18:30:45.141 DEBUG: Declared extensions of language C# were converted to sonar.lang.patterns.cs : **/*.cs
+18:30:45.141 DEBUG: Declared extensions of language Java were converted to sonar.lang.patterns.java : **/*.java,**/*.jav
+18:30:45.142 DEBUG: Declared extensions of language HTML were converted to sonar.lang.patterns.web : **/*.html,**/*.xhtml,**/*.cshtml,**/*.vbhtml,**/*.aspx,**/*.ascx,**/*.rhtml,**/*.erb,**/*.shtm,**/*.shtml
+18:30:45.142 DEBUG: Declared extensions of language JSP were converted to sonar.lang.patterns.jsp : **/*.jsp,**/*.jspf,**/*.jspx
+18:30:45.142 DEBUG: Declared extensions of language Flex were converted to sonar.lang.patterns.flex : **/*.as
+18:30:45.143 DEBUG: Declared extensions of language XML were converted to sonar.lang.patterns.xml : **/*.xml,**/*.xsd,**/*.xsl
+18:30:45.143 DEBUG: Declared extensions of language PHP were converted to sonar.lang.patterns.php : **/*.php,**/*.php3,**/*.php4,**/*.php5,**/*.phtml,**/*.inc
+18:30:45.143 DEBUG: Declared extensions of language VB.NET were converted to sonar.lang.patterns.vbnet : **/*.vb
+18:30:45.146 DEBUG: Will ignore generated code
+18:30:45.147 DEBUG: Will ignore generated code
+18:30:45.148 INFO: Indexing files...
+18:30:45.148 INFO: Project configuration:
+18:30:45.149 INFO:   Excluded sources: node_modules/*, **/*.spec.ts
+18:30:45.162 DEBUG: loading config FileBasedConfig[/var/jenkins_home/.config/jgit/config]
+18:30:45.163 DEBUG: readpipe [/usr/bin/git, --version],/usr/bin
+18:30:45.196 DEBUG: readpipe may return 'git version 2.30.2'
+18:30:45.196 DEBUG: remaining output:
+
+18:30:45.197 DEBUG: readpipe [/usr/bin/git, config, --system, --edit],/usr/bin
+18:30:45.200 DEBUG: readpipe may return '/etc/gitconfig'
+18:30:45.200 DEBUG: remaining output:
+
+18:30:45.202 DEBUG: loading config FileBasedConfig[/etc/gitconfig]
+18:30:45.203 DEBUG: loading config FileBasedConfig[/var/jenkins_home/.gitconfig]
+18:30:45.246 DEBUG: 32 non excluded files in this Git repository
+18:30:45.258 DEBUG: 'src/polyfills.ts' indexed with language 'ts'
+18:30:45.269 DEBUG: 'src/app/app.component.ts' indexed with language 'ts'
+18:30:45.276 INFO: Load project repositories
+18:30:45.283 DEBUG: GET 200 http://sonarqube:9000/batch/project.protobuf?key=sonarq-project-devops | time=7ms
+18:30:45.287 INFO: Load project repositories (done) | time=11ms
+18:30:45.288 DEBUG: 'src/app/app.component.css' generated metadata with charset 'UTF-8'
+18:30:45.288 DEBUG: 'src/app/app.component.css' indexed with language 'css'
+18:30:45.289 DEBUG: 'src/app/app.component.html' indexed with language 'web'
+18:30:45.290 DEBUG: 'src/app/app.module.ts' indexed with language 'ts'
+18:30:45.292 DEBUG: 'src/app/app-routing.module.ts' indexed with language 'ts'
+18:30:45.292 DEBUG: 'src/favicon.ico' indexed with no language
+18:30:45.293 DEBUG: 'src/test.ts' indexed with language 'ts'
+18:30:45.294 DEBUG: 'src/environments/environment.ts' indexed with language 'ts'
+18:30:45.295 DEBUG: 'src/environments/environment.prod.ts' indexed with language 'ts'
+18:30:45.296 DEBUG: 'src/styles.css' generated metadata with charset 'UTF-8'
+18:30:45.296 DEBUG: 'src/styles.css' indexed with language 'css'
+18:30:45.297 DEBUG: 'src/index.html' indexed with language 'web'
+18:30:45.298 DEBUG: 'src/main.ts' indexed with language 'ts'
+18:30:45.305 INFO: 13 files indexed
+18:30:45.305 INFO: 1 file ignored because of inclusion/exclusion patterns
+18:30:45.305 INFO: 0 files ignored because of scm ignore settings
+18:30:45.306 INFO: Quality profile for css: Sonar way
+18:30:45.306 INFO: Quality profile for ts: Sonar way
+18:30:45.306 INFO: Quality profile for web: Sonar way
+18:30:45.306 INFO: ------------- Run sensors on module sonarq-project-devops
+18:30:45.358 INFO: Load metrics repository
+18:30:45.368 DEBUG: GET 200 http://sonarqube:9000/api/metrics/search?ps=500&p=1 | time=9ms
+18:30:45.380 INFO: Load metrics repository (done) | time=22ms
+18:30:46.040 DEBUG: 'JavaSensor' skipped because there is no related file in current project
+18:30:46.041 DEBUG: 'Import external issues report' skipped because one of the required properties is missing
+18:30:46.041 DEBUG: 'Python Sensor' skipped because there is no related file in current project
+18:30:46.041 DEBUG: 'Cobertura Sensor for Python coverage' skipped because there is no related file in current project
+18:30:46.041 DEBUG: 'PythonXUnitSensor' skipped because there is no related file in current project
+18:30:46.042 DEBUG: 'Import of Pylint issues' skipped because there is no related file in current project
+18:30:46.042 DEBUG: 'Import of Bandit issues' skipped because there is no related file in current project
+18:30:46.042 DEBUG: 'Import of Flake8 issues' skipped because there is no related file in current project
+18:30:46.042 DEBUG: 'Import of stylelint issues' skipped because one of the required properties is missing
+18:30:46.042 DEBUG: 'Code Quality and Security for Go' skipped because there is no related file in current project
+18:30:46.043 DEBUG: 'Go Unit Test Report' skipped because there is no related file in current project
+18:30:46.043 DEBUG: 'Go Cover sensor for Go coverage' skipped because one of the required properties is missing
+18:30:46.043 DEBUG: 'Import of go vet issues' skipped because there is no related file in current project
+18:30:46.043 DEBUG: 'Import of Golint issues' skipped because there is no related file in current project
+18:30:46.043 DEBUG: 'Import of GoMetaLinter issues' skipped because there is no related file in current project
+18:30:46.043 DEBUG: 'Import of GolangCI-Lint issues' skipped because there is no related file in current project
+18:30:46.043 DEBUG: 'Kotlin Sensor' skipped because there is no related file in current project
+18:30:46.044 DEBUG: 'KotlinSurefireSensor' skipped because there is no related file in current project
+18:30:46.044 DEBUG: 'Import of detekt issues' skipped because there is no related file in current project
+18:30:46.044 DEBUG: 'Import of Android Lint issues' skipped because one of the required properties is missing
+18:30:46.044 DEBUG: 'Import of ktlint issues' skipped because there is no related file in current project
+18:30:46.044 DEBUG: 'JavaScript analysis' skipped because there is no related file in current project
+18:30:46.045 DEBUG: 'JavaScript/TypeScript Coverage' skipped because one of the required properties is missing
+18:30:46.045 DEBUG: 'Import of ESLint issues' skipped because one of the required properties is missing
+18:30:46.045 DEBUG: 'Import of TSLint issues' skipped because one of the required properties is missing
+18:30:46.045 DEBUG: 'Ruby Sensor' skipped because there is no related file in current project
+18:30:46.045 DEBUG: 'Import of RuboCop issues' skipped because there is no related file in current project
+18:30:46.046 DEBUG: 'SimpleCov Sensor for Ruby coverage' skipped because there is no related file in current project
+18:30:46.046 DEBUG: 'Scala Sensor' skipped because there is no related file in current project
+18:30:46.046 DEBUG: 'Scoverage sensor for Scala coverage' skipped because there is no related file in current project
+18:30:46.046 DEBUG: 'Import of Scalastyle issues' skipped because there is no related file in current project
+18:30:46.046 DEBUG: 'Import of Scapegoat issues' skipped because there is no related file in current project
+18:30:46.047 DEBUG: 'Import of Checkstyle issues' skipped because there is no related file in current project
+18:30:46.047 DEBUG: 'Import of PMD issues' skipped because one of the required properties is missing
+18:30:46.047 DEBUG: 'Import of SpotBugs issues' skipped because there is no related file in current project
+18:30:46.047 DEBUG: 'SurefireSensor' skipped because there is no related file in current project
+18:30:46.048 DEBUG: 'Removed properties sensor' skipped because there is no related file in current project
+18:30:46.048 DEBUG: 'Flex' skipped because there is no related file in current project
+18:30:46.048 DEBUG: 'Flex Cobertura' skipped because there is no related file in current project
+18:30:46.048 DEBUG: 'XML Sensor' skipped because there is no related file in current project
+18:30:46.048 DEBUG: 'PHP sensor' skipped because there is no related file in current project
+18:30:46.048 DEBUG: 'Analyzer for "php.ini" files' skipped because there is no related file in current project
+18:30:46.049 DEBUG: 'Import of PHPStan issues' skipped because there is no related file in current project
+18:30:46.049 DEBUG: 'Import of Psalm issues' skipped because there is no related file in current project
+18:30:46.050 DEBUG: 'Generic Test Executions Report' skipped because one of the required properties is missing
+18:30:46.051 DEBUG: Sensors : CSS Metrics -> CSS Rules -> JaCoCo XML Report Importer -> TypeScript analysis -> C# Project Type Information -> C# Analysis Log -> C# Properties -> JavaXmlSensor -> HTML -> VB.NET Project Type Information -> VB.NET Analysis Log -> VB.NET Properties
+18:30:46.054 INFO: Sensor CSS Metrics [cssfamily]
+18:30:46.075 INFO: Sensor CSS Metrics [cssfamily] (done) | time=22ms
+18:30:46.075 INFO: Sensor CSS Rules [cssfamily]
+18:30:46.076 DEBUG: Deploying bundle
+18:30:46.076 DEBUG: Deploying css-bundle into /var/jenkins_home/workspace/JobDevOpsTestJenkins/.scannerwork
+18:30:46.076 DEBUG: Deploying css-bundle to /var/jenkins_home/workspace/JobDevOpsTestJenkins/.scannerwork
+18:30:46.610 DEBUG: Deploying bundle (done) | time=534ms
+18:30:46.610 DEBUG: Starting server
+18:30:46.615 DEBUG: Using default Node.js executable: 'node'.
+18:30:46.615 DEBUG: Checking Node.js version
+18:30:46.616 DEBUG: Launching command node -v
+18:30:46.619 ERROR: CSS rules were not executed. Error when running: 'node -v'. Is Node.js available during analysis?
+org.sonarsource.nodejs.NodeCommandException: Error when running: 'node -v'. Is Node.js available during analysis?
+	at org.sonarsource.nodejs.NodeCommand.start(NodeCommand.java:81)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.getVersion(NodeCommandBuilderImpl.java:181)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.checkNodeCompatibility(NodeCommandBuilderImpl.java:159)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.build(NodeCommandBuilderImpl.java:134)
+	at org.sonar.css.plugin.server.CssAnalyzerBridgeServer.initNodeCommand(CssAnalyzerBridgeServer.java:157)
+	at org.sonar.css.plugin.server.CssAnalyzerBridgeServer.startServer(CssAnalyzerBridgeServer.java:107)
+	at org.sonar.css.plugin.server.CssAnalyzerBridgeServer.startServerLazily(CssAnalyzerBridgeServer.java:177)
+	at org.sonar.css.plugin.CssRuleSensor.execute(CssRuleSensor.java:99)
+	at org.sonar.scanner.sensor.AbstractSensorWrapper.analyse(AbstractSensorWrapper.java:48)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:85)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.lambda$execute$1(ModuleSensorsExecutor.java:59)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.withModuleStrategy(ModuleSensorsExecutor.java:77)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:59)
+	at org.sonar.scanner.scan.ModuleScanContainer.doAfterStart(ModuleScanContainer.java:79)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.scanner.scan.ProjectScanContainer.scan(ProjectScanContainer.java:382)
+	at org.sonar.scanner.scan.ProjectScanContainer.scanRecursively(ProjectScanContainer.java:378)
+	at org.sonar.scanner.scan.ProjectScanContainer.doAfterStart(ProjectScanContainer.java:347)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.scanner.bootstrap.GlobalContainer.doAfterStart(GlobalContainer.java:136)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.batch.bootstrapper.Batch.doExecute(Batch.java:72)
+	at org.sonar.batch.bootstrapper.Batch.execute(Batch.java:66)
+	at org.sonarsource.scanner.api.internal.batch.BatchIsolatedLauncher.execute(BatchIsolatedLauncher.java:46)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.sonarsource.scanner.api.internal.IsolatedLauncherProxy.invoke(IsolatedLauncherProxy.java:60)
+	at com.sun.proxy.$Proxy0.execute(Unknown Source)
+	at org.sonarsource.scanner.api.EmbeddedScanner.doExecute(EmbeddedScanner.java:189)
+	at org.sonarsource.scanner.api.EmbeddedScanner.execute(EmbeddedScanner.java:138)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:112)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:75)
+	at org.sonarsource.scanner.cli.Main.main(Main.java:61)
+Caused by: java.io.IOException: Cannot run program "node": error=2, No such file or directory
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1128)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1071)
+	at org.sonarsource.nodejs.NodeCommand$ProcessWrapperImpl.start(NodeCommand.java:162)
+	at org.sonarsource.nodejs.NodeCommand.start(NodeCommand.java:77)
+	... 37 common frames omitted
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.base/java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:340)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:271)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1107)
+	... 40 common frames omitted
+
+18:30:46.629 INFO: Sensor CSS Rules [cssfamily] (done) | time=554ms
+18:30:46.629 INFO: Sensor JaCoCo XML Report Importer [jacoco]
+18:30:46.630 INFO: 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+18:30:46.631 INFO: No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+18:30:46.631 INFO: Sensor JaCoCo XML Report Importer [jacoco] (done) | time=2ms
+18:30:46.631 INFO: Sensor TypeScript analysis [javascript]
+18:30:46.632 DEBUG: Deploying bundle
+18:30:46.633 DEBUG: Deploying eslint-bridge into /var/jenkins_home/workspace/JobDevOpsTestJenkins/.scannerwork/.sonartmp/eslint-bridge-bundle
+18:30:47.544 DEBUG: Deploying bundle (done) | time=912ms
+18:30:47.544 DEBUG: Starting server
+18:30:47.546 DEBUG: Using default Node.js executable: 'node'.
+18:30:47.546 DEBUG: Checking Node.js version
+18:30:47.547 DEBUG: Launching command node -v
+18:30:47.548 ERROR: Error when running: 'node -v'. Is Node.js available during analysis?
+org.sonarsource.nodejs.NodeCommandException: Error when running: 'node -v'. Is Node.js available during analysis?
+	at org.sonarsource.nodejs.NodeCommand.start(NodeCommand.java:74)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.getVersion(NodeCommandBuilderImpl.java:181)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.checkNodeCompatibility(NodeCommandBuilderImpl.java:159)
+	at org.sonarsource.nodejs.NodeCommandBuilderImpl.build(NodeCommandBuilderImpl.java:134)
+	at org.sonar.plugins.javascript.eslint.EslintBridgeServerImpl.initNodeCommand(EslintBridgeServerImpl.java:183)
+	at org.sonar.plugins.javascript.eslint.EslintBridgeServerImpl.startServer(EslintBridgeServerImpl.java:125)
+	at org.sonar.plugins.javascript.eslint.EslintBridgeServerImpl.startServerLazily(EslintBridgeServerImpl.java:202)
+	at org.sonar.plugins.javascript.eslint.AbstractEslintSensor.execute(AbstractEslintSensor.java:120)
+	at org.sonar.plugins.javascript.eslint.TypeScriptSensor.execute(TypeScriptSensor.java:56)
+	at org.sonar.scanner.sensor.AbstractSensorWrapper.analyse(AbstractSensorWrapper.java:48)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:85)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.lambda$execute$1(ModuleSensorsExecutor.java:59)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.withModuleStrategy(ModuleSensorsExecutor.java:77)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:59)
+	at org.sonar.scanner.scan.ModuleScanContainer.doAfterStart(ModuleScanContainer.java:79)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.scanner.scan.ProjectScanContainer.scan(ProjectScanContainer.java:382)
+	at org.sonar.scanner.scan.ProjectScanContainer.scanRecursively(ProjectScanContainer.java:378)
+	at org.sonar.scanner.scan.ProjectScanContainer.doAfterStart(ProjectScanContainer.java:347)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.scanner.bootstrap.GlobalContainer.doAfterStart(GlobalContainer.java:136)
+	at org.sonar.core.platform.ComponentContainer.startComponents(ComponentContainer.java:137)
+	at org.sonar.core.platform.ComponentContainer.execute(ComponentContainer.java:123)
+	at org.sonar.batch.bootstrapper.Batch.doExecute(Batch.java:72)
+	at org.sonar.batch.bootstrapper.Batch.execute(Batch.java:66)
+	at org.sonarsource.scanner.api.internal.batch.BatchIsolatedLauncher.execute(BatchIsolatedLauncher.java:46)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.sonarsource.scanner.api.internal.IsolatedLauncherProxy.invoke(IsolatedLauncherProxy.java:60)
+	at com.sun.proxy.$Proxy0.execute(Unknown Source)
+	at org.sonarsource.scanner.api.EmbeddedScanner.doExecute(EmbeddedScanner.java:189)
+	at org.sonarsource.scanner.api.EmbeddedScanner.execute(EmbeddedScanner.java:138)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:112)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:75)
+	at org.sonarsource.scanner.cli.Main.main(Main.java:61)
+Caused by: java.io.IOException: Cannot run program "node": error=2, No such file or directory
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1128)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1071)
+	at org.sonarsource.nodejs.ProcessWrapperImpl.startProcess(ProcessWrapperImpl.java:39)
+	at org.sonarsource.nodejs.NodeCommand.start(NodeCommand.java:72)
+	... 38 common frames omitted
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.base/java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:340)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:271)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1107)
+	... 41 common frames omitted
+
+18:30:47.548 INFO: Sensor TypeScript analysis [javascript] (done) | time=917ms
+18:30:47.548 INFO: Sensor C# Project Type Information [csharp]
+18:30:47.549 INFO: Sensor C# Project Type Information [csharp] (done) | time=1ms
+18:30:47.549 INFO: Sensor C# Analysis Log [csharp]
+18:30:47.558 DEBUG: Project 'sonarq-project-devops': Property missing: 'sonar.cs.analyzer.projectOutPaths'. No protobuf files will be loaded for this project.
+18:30:47.559 INFO: Sensor C# Analysis Log [csharp] (done) | time=10ms
+18:30:47.559 INFO: Sensor C# Properties [csharp]
+18:30:47.559 DEBUG: Project 'sonarq-project-devops': Property missing: 'sonar.cs.analyzer.projectOutPaths'. No protobuf files will be loaded for this project.
+18:30:47.559 DEBUG: Project 'sonarq-project-devops': No Roslyn issues reports have been found.
+18:30:47.559 INFO: Sensor C# Properties [csharp] (done) | time=0ms
+18:30:47.559 INFO: Sensor JavaXmlSensor [java]
+18:30:47.560 INFO: Sensor JavaXmlSensor [java] (done) | time=1ms
+18:30:47.560 INFO: Sensor HTML [web]
+18:30:47.563 DEBUG: 'src/index.html' generated metadata with charset 'UTF-8'
+18:30:47.592 DEBUG: HtmlSensor: src/index.html: 0,0,1
+18:30:47.605 DEBUG: 'src/app/app.component.html' generated metadata with charset 'UTF-8'
+18:30:47.650 DEBUG: HtmlSensor: src/app/app.component.html: 21,1,33
+18:30:47.658 INFO: Sensor HTML [web] (done) | time=98ms
+18:30:47.658 INFO: Sensor VB.NET Project Type Information [vbnet]
+18:30:47.659 INFO: Sensor VB.NET Project Type Information [vbnet] (done) | time=1ms
+18:30:47.659 INFO: Sensor VB.NET Analysis Log [vbnet]
+18:30:47.667 DEBUG: Project 'sonarq-project-devops': Property missing: 'sonar.vbnet.analyzer.projectOutPaths'. No protobuf files will be loaded for this project.
+18:30:47.668 INFO: Sensor VB.NET Analysis Log [vbnet] (done) | time=9ms
+18:30:47.668 INFO: Sensor VB.NET Properties [vbnet]
+18:30:47.668 DEBUG: Project 'sonarq-project-devops': Property missing: 'sonar.vbnet.analyzer.projectOutPaths'. No protobuf files will be loaded for this project.
+18:30:47.668 DEBUG: Project 'sonarq-project-devops': No Roslyn issues reports have been found.
+18:30:47.668 INFO: Sensor VB.NET Properties [vbnet] (done) | time=0ms
+18:30:47.671 INFO: ------------- Run sensors on project
+18:30:47.679 DEBUG: 'Generic Coverage Report' skipped because one of the required properties is missing
+18:30:47.679 DEBUG: 'C#' skipped because there is no related file in current project
+18:30:47.679 DEBUG: 'C# Tests Coverage Report Import' skipped because there is no related file in current project
+18:30:47.679 DEBUG: '[Deprecated] C# Integration Tests Coverage Report Import' skipped because there is no related file in current project
+18:30:47.679 DEBUG: 'C# Unit Test Results Import' skipped because there is no related file in current project
+18:30:47.680 DEBUG: 'VB.NET' skipped because there is no related file in current project
+18:30:47.680 DEBUG: 'VB.NET Tests Coverage Report Import' skipped because there is no related file in current project
+18:30:47.680 DEBUG: '[Deprecated] VB.NET Integration Tests Coverage Report Import' skipped because there is no related file in current project
+18:30:47.680 DEBUG: 'VB.NET Unit Test Results Import' skipped because there is no related file in current project
+18:30:47.680 DEBUG: 'Java CPD Block Indexer' skipped because there is no related file in current project
+18:30:47.680 DEBUG: Sensors : Zero Coverage Sensor
+18:30:47.681 INFO: Sensor Zero Coverage Sensor
+18:30:47.681 INFO: Sensor Zero Coverage Sensor (done) | time=0ms
+18:30:47.683 DEBUG: 'src/app/app-routing.module.ts' generated metadata with charset 'UTF-8'
+18:30:47.687 DEBUG: 'src/test.ts' generated metadata with charset 'UTF-8'
+18:30:47.687 DEBUG: 'src/app/app.module.ts' generated metadata with charset 'UTF-8'
+18:30:47.687 DEBUG: 'src/polyfills.ts' generated metadata with charset 'UTF-8'
+18:30:47.688 DEBUG: 'src/main.ts' generated metadata with charset 'UTF-8'
+18:30:47.688 DEBUG: 'src/environments/environment.prod.ts' generated metadata with charset 'UTF-8'
+18:30:47.688 DEBUG: 'src/environments/environment.ts' generated metadata with charset 'UTF-8'
+18:30:47.689 DEBUG: 'src/app/app.component.ts' generated metadata with charset 'UTF-8'
+18:30:47.692 INFO: CPD Executor Calculating CPD for 2 files
+18:30:47.692 DEBUG: Detection of duplications for /var/jenkins_home/workspace/JobDevOpsTestJenkins/src/app/app.component.html
+18:30:47.702 DEBUG: Detection of duplications for /var/jenkins_home/workspace/JobDevOpsTestJenkins/src/index.html
+18:30:47.708 INFO: CPD Executor CPD calculation finished (done) | time=11ms
+18:30:47.715 DEBUG: SCM revision ID 'e603d848763f2a482918235b1cd85530d1e8ade8'
+18:30:47.757 INFO: Analysis report generated in 47ms, dir size=146.8 kB
+18:30:47.773 INFO: Analysis report compressed in 16ms, zip size=34.1 kB
+18:30:47.774 INFO: Analysis report generated in /var/jenkins_home/workspace/JobDevOpsTestJenkins/.scannerwork/scanner-report
+18:30:47.774 DEBUG: Upload report
+18:30:47.810 DEBUG: POST 200 http://sonarqube:9000/api/ce/submit?projectKey=sonarq-project-devops | time=36ms
+18:30:47.815 INFO: Analysis report uploaded in 38ms
+18:30:47.816 DEBUG: Report metadata written to /var/jenkins_home/workspace/JobDevOpsTestJenkins/.scannerwork/report-task.txt
+18:30:47.816 INFO: ANALYSIS SUCCESSFUL, you can browse http://sonarqube:9000/dashboard?id=sonarq-project-devops
+18:30:47.816 INFO: Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+18:30:47.816 INFO: More about the report processing at http://sonarqube:9000/api/ce/task?id=AXyAEi7uyYra3n6Gv4LQ
+18:30:47.818 DEBUG: Post-jobs : 
+18:30:48.018 INFO: Analysis total time: 5.242 s
+18:30:48.019 INFO: ------------------------------------------------------------------------
+18:30:48.019 INFO: EXECUTION SUCCESS
+18:30:48.019 INFO: ------------------------------------------------------------------------
+18:30:48.019 INFO: Total time: 6.112s
+18:30:48.049 INFO: Final Memory: 7M/27M
+18:30:48.049 INFO: ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Quality Gate)
+[Pipeline] timeout
+Timeout set to expire in 2 min 0 sec
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] waitForQualityGate
+Checking status of SonarQube task 'AXyAEi7uyYra3n6Gv4LQ' on server 'SonarQubeDocker'
+SonarQube task 'AXyAEi7uyYra3n6Gv4LQ' status is 'IN_PROGRESS'
+SonarQube task 'AXyAEi7uyYra3n6Gv4LQ' status is 'SUCCESS'
+SonarQube task 'AXyAEi7uyYra3n6Gv4LQ' completed. Quality gate is 'OK'
+[Pipeline] sh
++ echo SonarQube said OK... It can go to PROD
+SonarQube said OK... It can go to PROD
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
